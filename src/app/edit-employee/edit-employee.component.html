@@ -1,0 +1,92 @@
+<div class="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Employee</h5>
+        <button type="button" class="close" (click)="closeModal()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      
+      <div class="modal-body">
+      	<div>
+				  <form>
+				    <div class="form-group">
+				      <label for="name">Name</label>
+				      <input type="text" class="form-control" id="name" required [(ngModel)]="selectedEmployee.name" name="name">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="username">Username</label>
+				      <input type="text" class="form-control" id="username" required [(ngModel)]="selectedEmployee.username" name="username">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="email">Email</label>
+				      <input type="email" class="form-control" id="email" required [(ngModel)]="selectedEmployee.email" name="email">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="street">Street</label>
+				      <input type="text" class="form-control" id="street" required [(ngModel)]="selectedEmployee.address.street" name="street">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="suite">Suite</label>
+				      <input type="text" class="form-control" id="suite" required [(ngModel)]="selectedEmployee.address.suite" name="suite">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="city">City</label>
+				      <input type="text" class="form-control" id="city" required [(ngModel)]="selectedEmployee.address.city" name="city">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="zipcode">Zipcode</label>
+				      <input type="text" class="form-control" id="zipcode" required [(ngModel)]="selectedEmployee.address.zipcode" name="zipcode">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="lat">Latitude</label>
+				      <input type="text" class="form-control" id="lat" required [(ngModel)]="selectedEmployee.address.geo.lat" name="lat">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="lng">Longitude</label>
+				      <input type="text" class="form-control" id="lng" required [(ngModel)]="selectedEmployee.address.geo.lng" name="lng">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="phone">Phone</label>
+				      <input type="text" class="form-control" id="phone" required [(ngModel)]="selectedEmployee.phone" name="phone">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="website">Website</label>
+				      <input type="text" class="form-control" id="website" required [(ngModel)]="selectedEmployee.website" name="website">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="companyName">Company Name</label>
+				      <input type="text" class="form-control" id="companyName" required [(ngModel)]="selectedEmployee.company.name" name="companyName">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="catchPhrase">Company Catch Phrase</label>
+				      <input type="text" class="form-control" id="catchPhrase" required [(ngModel)]="selectedEmployee.company.catchPhrase" name="catchPhrase">
+				    </div>
+
+				    <div class="form-group">
+				      <label for="bs">Company bs</label>
+				      <input type="text" class="form-control" id="bs" required [(ngModel)]="selectedEmployee.company.bs" name="bs">
+				    </div>
+				  </form>
+				</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="editEmployee()">Save changes</button>
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

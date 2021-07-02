@@ -1,0 +1,68 @@
+<button class="btn btn-primary" (click)="showModal()">Add</button>
+
+<div class="panel panel-primary" *ngIf="employees.length > 0">
+  <div class="panel-heading">
+    <h2 style="text-align: center;">Employee List</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Company</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees">
+          <td>{{employee.name}}</td>
+          <td>{{employee.address?.street}}, {{employee.address?.suite}}, {{employee.address?.city}}, {{employee.address?.zipcode}}</td>
+          <td>{{employee.company?.name}}</td>
+          <td><button (click)="editEmployee(employee.id)" class="btn btn-info">Edit</button>
+              <button (click)="deleteEmployee(employee.id)" class="btn btn-danger" style="margin-left: 10px">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="panel panel-primary" *ngIf="deletedEmployees.length > 0">
+  <div class="panel-heading">
+    <h2 style="text-align: center;">Deleted Employee List</h2>
+  </div>
+  <div class="panel-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Company</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let deletedEmployee of deletedEmployees">
+          <td>{{deletedEmployee.name}}</td>
+          <td>{{deletedEmployee.address.street}}, {{deletedEmployee.address.suite}}, {{deletedEmployee.address.city}}, {{deletedEmployee.address.zipcode}}</td>
+          <td>{{deletedEmployee.company.name}}</td>
+          <td><button (click)="restoreEmployee(deletedEmployee.id)" class="btn btn-primary">Restore</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div *ngIf="showAddModal">
+  <app-add-employee [showAddModal]="showAddModal" (addEmployee)="addEmployee($event)" 
+                    (closeAddModal)="closeAddModal($event)"></app-add-employee>
+</div>
+
+<div *ngIf="showEditModal">
+  <app-edit-employee [selectedEmployee]="selectedEmployee" [showEditModal]="showEditModal" 
+                  (updateEmployee)="updateEmployee($event)" (closeEditModal)="closeEditModal($event)"></app-edit-employee>
+</div>
+
