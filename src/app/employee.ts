@@ -10,5 +10,6 @@ export class Employee {
     phone: string;
     website: string;
     company: Company = new Company();
+    distance: number;
 
 }

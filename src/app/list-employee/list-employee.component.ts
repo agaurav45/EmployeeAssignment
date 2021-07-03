@@ -31,6 +31,7 @@ export class ListEmployeeComponent implements OnInit {
         data => {
           this.employees = data;
           this.employeeCount = this.employees.length;
+          this.addDistance();
         },
         error => console.log(error));
   }
@@ -79,6 +80,42 @@ export class ListEmployeeComponent implements OnInit {
 
   findDeletedIndex(id: number) {
     return this.deletedEmployees.findIndex(e => e.id == id);
+  }
+
+  addDistance() {
+    this.employees.forEach(e=> {
+      e.distance = this.calculateDistance(e.address.geo.lat, e.address.geo.lng);;
+    });
+
+    this.sortByDistance();
+  }
+
+  calculateDistance(lat: any, lon: any) {
+    var R = 6371; // km
+    var dLat = this.toRad(lat);
+    var dLon = this.toRad(lon);
+    var lat1 = this.toRad(0);
+    var lat2 = this.toRad(0);
+
+    var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+    Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2); 
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+    var d = R * c;
+    
+    return d;
+  }
+
+  toRad(val: any) {
+    return val * Math.PI / 180;
+  }
+
+  sortByDistance() {
+    return this.employees.sort(function(a, b) {
+      var x = a.distance; 
+      var y = b.distance;
+      
+      return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+    });
   }
 
 }
