@@ -32,6 +32,7 @@ export class ListEmployeeComponent implements OnInit {
           this.employees = data;
           this.employeeCount = this.employees.length;
           this.addDistance();
+          this.sortByDistance();
         },
         error => console.log(error));
   }
@@ -56,7 +57,9 @@ export class ListEmployeeComponent implements OnInit {
   addEmployee(employee: any) {
     if(employee.name) {
       employee['id'] = ++this.employeeCount;
+      employee['distance'] = this.calculateDistance(employee.address.geo.lat, employee.address.geo.lng);
       this.employees.push(JSON.parse(JSON.stringify(employee)));
+      this.sortByDistance();
     }
     
     this.showAddModal = false;
@@ -84,10 +87,8 @@ export class ListEmployeeComponent implements OnInit {
 
   addDistance() {
     this.employees.forEach(e=> {
-      e.distance = this.calculateDistance(e.address.geo.lat, e.address.geo.lng);;
+      e.distance = this.calculateDistance(e.address.geo.lat, e.address.geo.lng);
     });
-
-    this.sortByDistance();
   }
 
   calculateDistance(lat: any, lon: any) {
